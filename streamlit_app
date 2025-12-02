@@ -1,19 +1,14 @@
 # Import python packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+
 # NOTE: The 'Session' class is implicitly used by get_active_session.
 # No need for 'from snowflake.snowpark import Session' if only using get_active_session().
 
 # Get the active Snowpark session
 
+cnx = st.connection("snowflake")
+session = cnx.session()
 
-from snowflake.snowpark.functions import udf
-
-session = get_active_session()
-
-@udf(session=session)
-def myfunc(x: int) -> int:
-    return x + 1
 
 # --- App Title and Setup ---
 st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
