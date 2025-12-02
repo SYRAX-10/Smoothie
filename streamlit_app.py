@@ -76,3 +76,27 @@ if submit:
             st.success(f"Order placed, {name}! 🎉")
         except Exception as e:
             st.error(f"Error placing order: {e}")
+# -----------------------------------------------------
+# NUTRITION API (YOUR REQUESTS CODE DIRECTLY HERE)
+# -----------------------------------------------------
+        st.subheader("Nutrition Information")
+
+        for fruit_chosen in ingredients_list:
+
+            st.markdown(f"### {fruit_chosen}")
+
+            try:
+                response = requests.get(
+                    f"https://my.smoothiefroot.com/api/fruit/{fruit_chosen}"
+                )
+
+                if response.status_code == 200:
+                    st.dataframe(
+                        data=response.json(),
+                        use_container_width=True
+                    )
+                else:
+                    st.error(f"Could not fetch nutrition info for {fruit_chosen}")
+
+            except Exception as e:
+                st.error(f"API error for {fruit_chosen}: {e}")
