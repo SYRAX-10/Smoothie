@@ -1,6 +1,6 @@
 # Import python packages
 import streamlit as st
-
+from snowflake.snowpark.functions import col
 # NOTE: The 'Session' class is implicitly used by get_active_session.
 # No need for 'from snowflake.snowpark import Session' if only using get_active_session().
 
