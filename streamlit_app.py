@@ -35,7 +35,7 @@ try:
     search_terms = df_pandas["SEARCH_ON"].tolist()
 except Exception as e:
     st.error(f"Error loading fruit_options: {e}")
-    fruit_names = ["Apples", "Oranges"]  # FIXED: fallback lists
+    fruit_names = ["Apples", "Oranges"]  # fallback lists
     search_terms = ["Apples", "Oranges"]
     my_dataframe = None
 
@@ -82,15 +82,15 @@ if submit:
     st.subheader("Nutrition Information")
 
     for term in selected_search_terms:
-        # Display the search_on value info
-        search_on = df_pandas.loc[df_pandas['FRUIT_NAME'] == term, 'SEARCH_ON'].iloc[0]
+        # Display the search value info
+        search_on = df_pandas.loc[df_pandas['SEARCH_ON'] == term, 'SEARCH_ON'].iloc[0]
         st.write(f"The search value for {term} is {search_on}.")
-    
+
         st.markdown(f"### {term}")
-    
+
         try:
             response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{term}")
-    
+
             if response.status_code == 200:
                 st.dataframe(
                     data=response.json(),
@@ -99,7 +99,5 @@ if submit:
             else:
                 st.error(f"Could not fetch nutrition info for {term}")
 
-    except Exception as e:
-        st.error(f"API error for {term}: {e}")
-
-
+        except Exception as e:
+            st.error(f"API error for {term}: {e}")
