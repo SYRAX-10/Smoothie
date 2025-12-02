@@ -81,7 +81,7 @@ if submit:
 # -----------------------------------------------------
         st.subheader("Nutrition Information")
 
-        for fruit_chosen in ingredients_list:
+        for fruit_chosen in ingredients:
 
             st.markdown(f"### {fruit_chosen}")
 
