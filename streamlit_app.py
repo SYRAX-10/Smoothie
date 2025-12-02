@@ -63,16 +63,18 @@ if submit:
         st.warning("Please enter your name.")
         st.stop()
 
-    # Insert order into Snowflake table
+    # Insert order into Snowflake table - FIXED here
     try:
-        session.table("smoothies.public.orders").insert({
-            "INGREDIENTS": ", ".join(ingredients),
-            "NAME_ON_ORDER": name
-        })
+        insert_stmt = f"""
+            INSERT INTO smoothies.public.orders (INGREDIENTS, NAME_ON_ORDER)
+            VALUES ('{", ".join(ingredients)}', '{name}')
+        """
+        session.sql(insert_stmt).collect()
         st.success(f"Order placed, {name}! 🎉")
     except Exception as e:
         st.error(f"Error placing order: {e}")
         st.stop()
+
 
     # Map selected fruits to SEARCH_ON terms
     search_term_map = dict(zip(fruit_names, search_terms))
