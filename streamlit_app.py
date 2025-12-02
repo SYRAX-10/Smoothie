@@ -60,7 +60,9 @@ if submit:
         st.stop()
 
     # Normalize ingredients string for consistent spacing and hashing
+    # Strip extra spaces from each fruit, join with ", " exactly one space after comma
     ingredients_str = ", ".join([fruit.strip() for fruit in ingredients_list])
+    # Regex to remove extra spaces around commas if any (just a safeguard)
     ingredients_str = re.sub(r'\s*,\s*', ', ', ingredients_str.strip())
 
     # Insert order into Snowflake table using normalized string
@@ -81,7 +83,7 @@ if submit:
     st.subheader("Nutrition Information")
 
     for fruit_chosen in ingredients_list:
-        # Get SEARCH_ON value from pandas dataframe
+        # Get SEARCH_ON value from pandas dataframe safely
         search_on = df_pandas.loc[df_pandas['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
         st.write(f"The search value for {fruit_chosen} is {search_on}.")
 
@@ -97,4 +99,5 @@ if submit:
 
         except Exception as e:
             st.error(f"API error for {fruit_chosen}: {e}")
+
 
