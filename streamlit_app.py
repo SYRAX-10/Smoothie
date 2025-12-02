@@ -8,16 +8,7 @@ from snowflake.snowpark.functions import udf
 # Snowflake Connection (LOCAL / GITHUB / STREAMLIT CLOUD)
 # ------------------------------
 def create_session():
-    connection_parameters = {
-        "account": st.secrets["snowflake"]["account"],
-        "user": st.secrets["snowflake"]["user"],
-        "password": st.secrets["snowflake"]["password"],
-        "role": st.secrets["snowflake"]["role"],
-        "warehouse": st.secrets["snowflake"]["warehouse"],
-        "database": st.secrets["snowflake"]["database"],
-        "schema": st.secrets["snowflake"]["schema"]
-    }
-    return Session.builder.configs(connection_parameters).create()
+ 
 
 session = create_session()
 
