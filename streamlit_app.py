@@ -7,9 +7,6 @@ from snowflake.snowpark.functions import udf
 # ------------------------------
 # Snowflake Connection (LOCAL / GITHUB / STREAMLIT CLOUD)
 # ------------------------------
-def create_session():
- 
-
 session = create_session()
 
 # ------------------------------
