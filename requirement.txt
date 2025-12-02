@@ -1,8 +1,4 @@
-name: streamlit_snowflake_env
-dependencies:
-  - python=3.10
-  - pip
-  - pip:
-      - streamlit
-      - snowflake-connector-python
-      - snowflake-snowpark-python
+streamlit
+snowflake-connector-python
+snowflake-snowpark-python
+pandas
