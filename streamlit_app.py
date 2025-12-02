@@ -37,6 +37,11 @@ if my_dataframe is not None:
     st.subheader("Available Fruits")
     st.dataframe(my_dataframe)
 
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
+
+
 # --------------------------------------
 # SMOOTHIE FORM
 # --------------------------------------
