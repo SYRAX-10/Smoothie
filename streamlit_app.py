@@ -7,8 +7,8 @@ from snowflake.snowpark.functions import udf
 # ------------------------------
 # Snowflake Connection (LOCAL / GITHUB / STREAMLIT CLOUD)
 # ------------------------------
-
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session
 # ------------------------------
 # UDF Example
 # ------------------------------
