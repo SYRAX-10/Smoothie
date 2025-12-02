@@ -6,8 +6,10 @@ from snowflake.snowpark.types import IntegerType
 # --------------------------------------
 # SNOWFLAKE CONNECTION USING st.connection
 # --------------------------------------
-cnx = st.connection("snowflake")
-session = cnx.session
+
+connection_parameters = st.secrets["connections"]["snowflake"]
+
+session = Session.builder.configs(connection_parameters).create()
 
 # --------------------------------------
 # UDF EXAMPLE (SAFE)
